@@ -1,0 +1,216 @@
+﻿
+<div class="text-center">
+    <h1 class="display-1">Sustainability Simulator</h1>
+    <h2>Domestic electricity scenario</h2>
+
+    <p><button onclick="addItem('Item name', 1,0,1);" class="btn btn-secondary">Add item</button></p>
+
+    <table id="itemsTable" style="margin-left: auto; margin-right: auto;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Wattage</th>
+                <th>Duration (hours)</th>
+                <th>On?</th>
+                <th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input class="name" type="text" /></td>
+                <td><input class="quantity" type="number" /></td>
+                <td><input class="wattage" type="number" /></td>
+                <td><input class="hours" type="number" /></td>
+                <td><input class="turnedOn form-check-input" type="checkbox" /></td>
+                <td><button class="btn btn-danger btn-sm" onclick="removeItem(this);">Remove</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+
+    <div class="row justify-content-md-center">
+        <div class="col-2">
+            <h2>Variables</h2>
+            <p>Cost £/kWh: <input id="usageCostPerKilowat" type="number" value="0.28" class="form-control" /></p>
+            <p>Carbon intensity g/kWh: <input id="usageCarbonIntensity" type="number" value="213" class="form-control" /></p>
+        </div>
+        <div class="col-2">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <p><button class="btn btn-success" onclick="calculate();">Calculate</button></p>
+
+        </div>
+        <div class="col-2">
+            <h2>Results</h2>
+
+            <table style="margin-left: auto; margin-right: auto;">
+                <tr>
+                    <td>Total Watts:</td>
+                    <td class="result"><span id="totalWatts">0</span>W</td>
+                </tr>
+                <tr>
+                    <td>Total Cost:</td>
+                    <td class="result">£<span id="totalCost">0.00</span></td>
+                </tr>
+                <tr>
+                    <td>Total Carbon:</td>
+                    <td class="result"><span id="totalCarbon">0.00</span>g</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <p>
+        With data from:
+        <br /><a href="https://electricityinfo.org/real-time-british-electricity-supply/">https://electricityinfo.org/real-time-british-electricity-supply/</a>
+
+    </p>
+
+    <hr />
+
+
+
+    <br />
+    <p>
+        With data from:
+        <br /><a href="https://www.electricalsafetyfirst.org.uk/guidance/safety-around-the-home/home-appliances-ratings/">https://www.electricalsafetyfirst.org.uk/guidance/safety-around-the-home/home-appliances-ratings/</a>
+
+    </p>
+    <div class="row justify-content-md-center">
+        <div class="col-6">
+            <table class="table">
+                <tr>
+                    <th>Item</th>
+                    <th>Wattage</th>
+                    <th>Notes</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>American style fridge freezer</td>
+                    <td>250</td>
+                    <td></td>
+                    <td><button class="btn btn-secondary btn-sm" onclick="addItem('Fridge freezer', 1, 250, 24)">Add</button></td>
+                </tr>
+                <tr>
+                    <td>Radiator or fan heater</td>
+                    <td>Up to 3000</td>
+                    <td></td>
+                    <td><button class="btn btn-secondary btn-sm" onclick="addItem('Radiator', 1, 3000, 2)">Add</button></td>
+                </tr>
+                <tr>
+                    <td>Washing machine</td>
+                    <td>Up to 2200</td>
+                    <td></td>
+                    <td><button class="btn btn-secondary btn-sm" onclick="addItem('Washing machine', 1, 2200, 1)">Add</button></td>
+                </tr>
+                <tr>
+                    <td>Tumble drier</td>
+                    <td>2500</td>
+                    <td></td>
+                    <td><button class="btn btn-secondary btn-sm" onclick="addItem('Tumble drier', 1, 2500, 1)">Add</button></td>
+                </tr>
+                <tr>
+                    <td>Dishwasher</td>
+                    <td>2200</td>
+                    <td></td>
+                    <td><button class="btn btn-secondary btn-sm" onclick="addItem('Dishwasher', 1, 2200, 1)">Add</button></td>
+                </tr>
+                <tr>
+                    <td>Single oven</td>
+                    <td>3000</td>
+                    <td></td>
+                    <td><button class="btn btn-secondary btn-sm" onclick="addItem('Oven', 1, 3000, 1)">Add</button></td>
+                </tr>
+                <tr>
+                    <td>Hair drier</td>
+                    <td>Up to 2200</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Iron</td>
+                    <td>3000</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Toaster (2 slices)</td>
+                    <td>Up to 900</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Toaster (4 slices)</td>
+                    <td>Up to 2000</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<script>
+    function addItem(name, quantity, wattage, duration) {
+
+        // Create a new row in table 'lightsTable'
+        $("#itemsTable > tbody").append("<tr><td><input type='text' value='" + name + "' /></td><td><input class='quantity' type='number' value='" + quantity + "' /></td><td><input class='wattage' type='number' value='" + wattage + "' /></td><td><input class='hours' type='number' value='" + duration + "' /></td><td><input class='turnedOn form-check-input' type='checkbox' checked='checked' /></td><td><button class='btn btn-danger btn-sm' onclick='removeItem(this);'>Remove</button></td></tr>");
+
+    }
+
+    function calculate() {
+        // Calculate cost and output of all lights that are turned on
+
+        // Get all rows in table body
+        let rows = $('#itemsTable > tbody > tr');
+
+        let totalWatts = 0;
+        let usageCostPerKilowat = $('#usageCostPerKilowat').val();
+        let usageCarbonIntensity = $('#usageCarbonIntensity').val();
+
+        rows.each(function () {
+            let wattage = $(this).find('input.wattage').val();
+            let quantity = $(this).find('input.quantity').val();
+            let hours = $(this).find('input.hours').val();
+            let turnedOn = $(this).find('input.turnedOn');
+
+            if (turnedOn.is(':checked')) {
+                totalWatts += (quantity * wattage * hours);
+            }
+        });
+
+        // Calculations
+        let totalKiloWatts = totalWatts / 1000;
+        let totalCost = totalKiloWatts * usageCostPerKilowat;
+        let totalCarbon = totalKiloWatts * usageCarbonIntensity;
+
+
+        // Show calculation output..
+        $('#totalWatts').html(totalWatts);
+        $('#totalCost').html(totalCost.toFixed(2));
+        $('#totalCarbon').html(totalCarbon.toFixed(2));
+
+    }
+
+    function removeItem(el) {
+        // get parent row and remove
+        $(el).closest('tr').remove();
+    }
+</script>
+
+
+
+<style>
+    .result {
+        font-weight: bold;
+    }
+</style>
