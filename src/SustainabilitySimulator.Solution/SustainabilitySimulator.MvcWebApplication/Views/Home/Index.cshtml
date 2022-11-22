@@ -2,17 +2,111 @@
 
 <a href="/Scenario/ShowersAndBaths/">Showers And Baths</a>
 *@
-<div class="container">
-    <div class="row">
-        <div class="text-center">
-            <img src="/images/sustainability-seedling.png" alt="" class="col-6" />
+
+@{
+    Layout = "~/Views/Shared/_LayoutGreen.cshtml";
+}
+
+<section id="hero">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+            <!-- Slide 1 -->
+            <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
+                <div class="carousel-container">
+                    <div class="container">
+                        <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Sustainability Simulator</span></h2>
+                        <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            @*<div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+            <div class="carousel-container">
+            <div class="container">
+            <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
+            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+            <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+            </div>
+            </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
+            <div class="carousel-container">
+            <div class="container">
+            <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
+            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+            <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+            </div>
+            </div>
+            </div>*@
+
         </div>
-        <h1 class="display-1 text-center">Sustainability Simulator</h1>
+
+        @*<a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>*@
+
     </div>
-</div>
-<br />
-<br />
-<div class="row">
+</section><!-- End Hero -->
+
+<section id="why-us" class="why-us">
+    <div class="container">
+
+        <div class="row no-gutters">
+
+            <div class="col-lg-4 col-md-6 content-item">
+                <span>01</span>
+                <h4>Domestic Electricity</h4>
+                <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 content-item">
+                <span>02</span>
+                <h4>Baths v Showers</h4>
+                <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 content-item">
+                <span>03</span>
+                <h4>Boiling Kettles</h4>
+                <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 content-item">
+                <span>04</span>
+                <h4>Repellendus molestiae</h4>
+                <p>Inventore quo sint a sint rerum. Distinctio blanditiis deserunt quod soluta quod nam mider lando casa</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 content-item">
+                <span>05</span>
+                <h4>Sapiente Magnam</h4>
+                <p>Vitae dolorem in deleniti ipsum omnis tempore voluptatem. Qui possimus est repellendus est quibusdam</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 content-item">
+                <span>06</span>
+                <h4>Facilis Impedit</h4>
+                <p>Quis eum numquam veniam ea voluptatibus voluptas. Excepturi aut nostrum repudiandae voluptatibus corporis sequi</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+@*<div class="row">
     <div class="col-sm-4">
         <div class="card">
             <div class="card-body">
@@ -40,7 +134,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 @*@await Html.PartialAsync("_DomesticItemsScenario")*@
 @*
