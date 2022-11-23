@@ -1,12 +1,69 @@
-﻿@{
-
+﻿
+@{
     Layout = "~/Views/Shared/_LayoutGreen.cshtml";
-
 }
+
+
+
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>About</h2>
+
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+        <div class="container">
+            <p>
+                Example inner page template
+            </p>
+        </div>
+    </section>
+
+
+
+
+@*<div class="row">
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Domestic Electricity</h5>
+                <p class="card-text">Simulate how much domestic electricity usage results in cost and CO2.</p>
+                <a href="/Scenario/DomesticElectricity/" class="btn btn-primary">View Scenario</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Showers and Baths</h5>
+                <p class="card-text">Hpw does having showers compare to baths with regards to water usage.</p>
+                <a href="/Scenario/ShowersAndBaths/" class="btn btn-primary">View Scenario</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">TBC</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="/Scenario/ShowersAndBaths/" class="btn btn-primary">View Scenario</a>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+@*@await Html.PartialAsync("_DomesticItemsScenario")*@
+@*
 <div class="text-center">
-    @*<h1 class="display-1">Sustainability Simulator</h1>*@
-    <h2 class="display-5">Domestic electricity scenario</h2>
-    <p class="lead">Simulating domestic electricity usage, cost and carbon impact.</p>
+    <h1 class="display-4">Sustainability Simulator</h1>
+    <h2>Domestic electricity scenario</h2>
 
     <p><button onclick="addItem('Item name', 1,0,1);" class="btn btn-secondary">Add item</button></p>
 
@@ -69,7 +126,22 @@
         </div>
     </div>
 
-   
+    <p>
+        With data from:
+        <br /><a href="https://electricityinfo.org/real-time-british-electricity-supply/">https://electricityinfo.org/real-time-british-electricity-supply/</a>
+
+    </p>
+
+    <hr />
+
+
+
+    <br />
+    <p>
+        With data from:
+        <br /><a href="https://www.electricalsafetyfirst.org.uk/guidance/safety-around-the-home/home-appliances-ratings/">https://www.electricalsafetyfirst.org.uk/guidance/safety-around-the-home/home-appliances-ratings/</a>
+
+    </p>
     <div class="row justify-content-md-center">
         <div class="col-6">
             <table class="table">
@@ -143,73 +215,65 @@
         </div>
     </div>
 
-    <hr/>
-
-    <h3>Simulation Notes</h3>
-    <p>
-        Using data from:
-        <br /><a href="https://electricityinfo.org/real-time-british-electricity-supply/">https://electricityinfo.org/real-time-british-electricity-supply/</a>   
-        <br /><a href="https://www.electricalsafetyfirst.org.uk/guidance/safety-around-the-home/home-appliances-ratings/">https://www.electricalsafetyfirst.org.uk/guidance/safety-around-the-home/home-appliances-ratings/</a>
-    </p>
-
 </div>
 
+@section Scripts{
 
 
 
+    <script>
+        function addItem(name, quantity, wattage, duration) {
 
-<script>
-    function addItem(name, quantity, wattage, duration) {
+            // Create a new row in table 'lightsTable'
+            $("#itemsTable > tbody").append("<tr><td><input type='text' value='" + name + "' /></td><td><input class='quantity' type='number' value='" + quantity + "' /></td><td><input class='wattage' type='number' value='" + wattage + "' /></td><td><input class='hours' type='number' value='" + duration + "' /></td><td><input class='turnedOn form-check-input' type='checkbox' checked='checked' /></td><td><button class='btn btn-danger btn-sm' onclick='removeItem(this);'>Remove</button></td></tr>");
 
-        // Create a new row in table 'lightsTable'
-        $("#itemsTable > tbody").append("<tr><td><input type='text' value='" + name + "' /></td><td><input class='quantity' type='number' value='" + quantity + "' /></td><td><input class='wattage' type='number' value='" + wattage + "' /></td><td><input class='hours' type='number' value='" + duration + "' /></td><td><input class='turnedOn form-check-input' type='checkbox' checked='checked' /></td><td><button class='btn btn-danger btn-sm' onclick='removeItem(this);'>Remove</button></td></tr>");
+        }
 
-    }
+        function calculate() {
+            // Calculate cost and output of all lights that are turned on
 
-    function calculate() {
-        // Calculate cost and output of all lights that are turned on
+            // Get all rows in table body
+            let rows = $('#itemsTable > tbody > tr');
 
-        // Get all rows in table body
-        let rows = $('#itemsTable > tbody > tr');
+            let totalWatts = 0;
+            let usageCostPerKilowat = $('#usageCostPerKilowat').val();
+            let usageCarbonIntensity = $('#usageCarbonIntensity').val();
 
-        let totalWatts = 0;
-        let usageCostPerKilowat = $('#usageCostPerKilowat').val();
-        let usageCarbonIntensity = $('#usageCarbonIntensity').val();
+            rows.each(function () {
+                let wattage = $(this).find('input.wattage').val();
+                let quantity = $(this).find('input.quantity').val();
+                let hours = $(this).find('input.hours').val();
+                let turnedOn = $(this).find('input.turnedOn');
 
-        rows.each(function () {
-            let wattage = $(this).find('input.wattage').val();
-            let quantity = $(this).find('input.quantity').val();
-            let hours = $(this).find('input.hours').val();
-            let turnedOn = $(this).find('input.turnedOn');
+                if (turnedOn.is(':checked')) {
+                    totalWatts += (quantity * wattage * hours);
+                }
+            });
 
-            if (turnedOn.is(':checked')) {
-                totalWatts += (quantity * wattage * hours);
-            }
-        });
-
-        // Calculations
-        let totalKiloWatts = totalWatts / 1000;
-        let totalCost = totalKiloWatts * usageCostPerKilowat;
-        let totalCarbon = totalKiloWatts * usageCarbonIntensity;
-
-
-        // Show calculation output..
-        $('#totalWatts').html(totalWatts);
-        $('#totalCost').html(totalCost.toFixed(2));
-        $('#totalCarbon').html(totalCarbon.toFixed(2));
-
-    }
-
-    function removeItem(el) {
-        // get parent row and remove
-        $(el).closest('tr').remove();
-    }
-</script>
+            // Calculations
+            let totalKiloWatts = totalWatts / 1000;
+            let totalCost = totalKiloWatts * usageCostPerKilowat;
+            let totalCarbon = totalKiloWatts * usageCarbonIntensity;
 
 
+            // Show calculation output..
+            $('#totalWatts').html(totalWatts);
+            $('#totalCost').html(totalCost.toFixed(2));
+            $('#totalCarbon').html(totalCarbon.toFixed(2));
 
-<style>
-    .result {
-        font-weight: bold;
-    }
-</style>
+        }
+
+        function removeItem(el)
+        {
+            // get parent row and remove
+            $(el).closest('tr').remove();
+        }
+    </script>
+
+}
+
+    <style>
+        .result {
+            font-weight:bold;
+        }
+    </style>*@

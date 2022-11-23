@@ -14,7 +14,7 @@ namespace SustainabilitySimulator.MvcWebApplication.Controllers
             return View();
         }
 
-        public IActionResult ShowersAndBaths()
+        public IActionResult BathsAndShowers()
         {
             return View();
         }
