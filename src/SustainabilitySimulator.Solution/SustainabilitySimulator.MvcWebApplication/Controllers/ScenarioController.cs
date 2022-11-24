@@ -19,5 +19,15 @@ namespace SustainabilitySimulator.MvcWebApplication.Controllers
             return View();
         }
 
+        public IActionResult ElectricityProduction()
+        {
+            return View();
+        }
+
+        public IActionResult VehicleMPG()
+        {
+            return View();
+        }
+
     }
 }
