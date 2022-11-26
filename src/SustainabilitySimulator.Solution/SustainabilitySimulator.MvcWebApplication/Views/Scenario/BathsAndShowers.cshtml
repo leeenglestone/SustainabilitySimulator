@@ -1,4 +1,56 @@
 ﻿<div class="text-center">
-    
-    <h2>Baths and Showers</h2>
+    <div class="section-title">
+        <h2>Baths and Showers</h2>
+    </div>
+
+    <h2>Variables</h2>
+
+    <table style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <th>Shower minutes</th>
+            <td><input id="showerMinutes" class="form-control" type="text" value="4"/></td>
+        </tr>
+        <tr>
+            <th>Shower litres per minute</th>
+            <td><input id="showerLitresPerMinute" class="form-control" type="text" value="12"/></td>
+        </tr>
+        <tr>
+            <th>Bath litres</th>
+            <td><input id="bathLitres" class="form-control" type="text" value="100" /></td>
+        </tr>
+    </table>
+    <br/>
+    <p><button class="btn btn-success" onclick="calculate();">Calculate</button></p>
+
+    <h2>Result</h2>
+
+    <table style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <th>Shower</th>
+            <td><span id="totalShowerLitres">0</span></td>
+        </tr>
+        <tr>
+            <th>Bath</th>
+            <td><span id="totalBathLitres">0</span></td>
+        </tr>
+    </table>
+
+    @*https://www.south-staffs-water.co.uk/media/1539/waterusehome.pdf*@
+
 </div>
+
+<br/><br/>
+
+<script>
+    function calculate()
+    {
+        let showerMinutes = $('#showerMinutes').val();
+        let showerLitresPerMinute = $('#showerLitresPerMinute').val();
+        let bathLitres = $('#bathLitres').val();
+
+        let totalShowerLitres = showerMinutes * showerLitresPerMinute;
+
+        $('#totalShowerLitres').html(totalShowerLitres);
+        $('#totalBathLitres').html(bathLitres);
+    }
+</script>

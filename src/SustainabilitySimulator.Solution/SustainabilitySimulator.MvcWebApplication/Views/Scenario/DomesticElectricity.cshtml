@@ -2,8 +2,10 @@
     //Layout = "~/Views/Shared/_LayoutGreen.cshtml";
 }
 <div class="text-center">
-    
-    <h2 class="display-5">Domestic Electricity</h2>
+
+    <div class="section-title">
+        <h2 class="display-5">Domestic Electricity</h2>
+    </div>
     <p class="lead">Simulating domestic electricity usage, cost and carbon impact.</p>
 
     <p><button onclick="addItem('Item name', 1,0,1);" class="btn btn-secondary">Add item</button></p>
@@ -21,12 +23,12 @@
         </thead>
         <tbody>
             <tr>
-                <td><input class="name" type="text" /></td>
-                <td><input class="quantity" type="number" /></td>
-                <td><input class="wattage" type="number" /></td>
-                <td><input class="hours" type="number" /></td>
-                <td><input class="turnedOn form-check-input" type="checkbox" /></td>
-                <td><button class="btn btn-danger btn-sm" onclick="removeItem(this);">Remove</button></td>
+                <td><input class="name form-control" type="text" /></td>
+                <td><input class="quantity form-control" type="number" /></td>
+                <td><input class="wattage form-control" type="number" /></td>
+                <td><input class="hours form-control" type="number" /></td>
+                <td><input class="turnedOn form-check-input form-control" type="checkbox" /></td>
+                <td><button class="btn btn-danger btn-sm form-control" onclick="removeItem(this);">Remove</button></td>
             </tr>
         </tbody>
     </table>
@@ -45,8 +47,8 @@
             <br />
             <br />
             <p><button class="btn btn-success" onclick="calculate();">Calculate</button></p>
-
         </div>
+
         <div class="col-2">
             <h2>Results</h2>
 
@@ -67,7 +69,7 @@
         </div>
     </div>
 
-   
+
     <div class="row justify-content-md-center">
         <div class="col-6">
             <table class="table">
@@ -141,12 +143,12 @@
         </div>
     </div>
 
-    <hr/>
+    <hr />
 
     <h3>Simulation Notes</h3>
     <p>
         Using data from:
-        <br /><a href="https://electricityinfo.org/real-time-british-electricity-supply/">https://electricityinfo.org/real-time-british-electricity-supply/</a>   
+        <br /><a href="https://electricityinfo.org/real-time-british-electricity-supply/">https://electricityinfo.org/real-time-british-electricity-supply/</a>
         <br /><a href="https://www.electricalsafetyfirst.org.uk/guidance/safety-around-the-home/home-appliances-ratings/">https://www.electricalsafetyfirst.org.uk/guidance/safety-around-the-home/home-appliances-ratings/</a>
     </p>
 
@@ -160,7 +162,7 @@
     function addItem(name, quantity, wattage, duration) {
 
         // Create a new row in table 'lightsTable'
-        $("#itemsTable > tbody").append("<tr><td><input type='text' value='" + name + "' /></td><td><input class='quantity' type='number' value='" + quantity + "' /></td><td><input class='wattage' type='number' value='" + wattage + "' /></td><td><input class='hours' type='number' value='" + duration + "' /></td><td><input class='turnedOn form-check-input' type='checkbox' checked='checked' /></td><td><button class='btn btn-danger btn-sm' onclick='removeItem(this);'>Remove</button></td></tr>");
+        $("#itemsTable > tbody").append("<tr><td><input type='text' class='form-control' value='" + name + "' /></td><td><input class='quantity form-control' type='number' value='" + quantity + "' /></td><td><input class='wattage form-control' type='number' value='" + wattage + "' /></td><td><input class='hours form-control' type='number' value='" + duration + "' /></td><td><input class='turnedOn form-check-input' type='checkbox' checked='checked' /></td><td><button class='btn btn-danger btn-sm' onclick='removeItem(this);'>Remove</button></td></tr>");
 
     }
 
